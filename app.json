@@ -1,5 +1,6 @@
 {
   "expo": {
+   "scheme": "etherstatapp",
     "name": "ether_stat",
     "slug": "ether_stat",
     "version": "1.0.0",
@@ -24,6 +25,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
