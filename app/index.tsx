@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import logo from '../assets/favicon.png'
+import { Link } from 'expo-router'
 
 const index = () => {
   return (
@@ -10,6 +11,7 @@ const index = () => {
       <View style={styles.card}>
         <Text>I am Card</Text>
       </View>
+      <Link href="./search">search page</Link>
     </View>
   )
 }
