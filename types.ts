@@ -13,8 +13,9 @@ export interface City {
         lat: number;
         lng: number;
     };
+    threat_score: number;
     temperature: number;
-    weather: String;
+    weather: string;
     elevation: number;
     pollen_count: number;
     aqi: number;
