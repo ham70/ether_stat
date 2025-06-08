@@ -1,12 +1,31 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { City } from '../types'
 
-const place = (city_id : string) => {
-  const [city, set_city] = useState<City | null>(null)
+const init_city = {
+    id: "init",
+    name: "nyc",
+    coordinates: {
+        lat: 1,
+        lng: 2
+    },
+    threat_score: 60,
+    temperature: 45,
+    weather: 'cloudy with a chance of meatballs',
+    elevation: 9,
+    pollen_count: 10,
+    aqi: 55,
+    uvi: 8,
+    crime_rate: 10000,
+    population_size: 99999999,
+    homelessness_rate: 15
+    }
+
+const place = ({city_id}: {city_id : string}) => {
+  const [city, set_city] = useState<City>(init_city)
   const [loading, set_loading] = useState<boolean>(true)
 
-  async function get_city(city_id : City){
+  async function get_city(city_id : string){
     set_loading(true)
     try{
         //logic to get city object from back end
@@ -39,6 +58,7 @@ const place = (city_id : string) => {
         set_loading(false)
     }
   }
+  useEffect(()=>{get_city(city_id)}, [])
 
   return (
     <View>
@@ -48,7 +68,9 @@ const place = (city_id : string) => {
             <Text>hi i'm loading the place</Text>
         ) : (
             <View>
-                {city?.name}
+                <Text>
+                    {city?.name}
+                </Text>
             </View>
         )
       }

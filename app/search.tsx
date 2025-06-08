@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Place from '../components/place'
 
 const search = () => {
   return (
     <View>
       <Text>search</Text>
+      <Place city_id="hello"/>
     </View>
   )
 }
