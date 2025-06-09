@@ -1,14 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context, useAppContext } from '../context'
 
-const navbar = () => {
+const Navbar = () => {
+  const context = useAppContext()
+  const city_qaunt = context.saved_cities.length
   return (
     <View>
       <Text>navbar</Text>
+      <Text>hello the navbar has context and can see {city_qaunt} amount of cities</Text>
     </View>
   )
 }
 
-export default navbar
+export default Navbar
 
 const styles = StyleSheet.create({})

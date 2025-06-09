@@ -4,7 +4,7 @@ import { City } from '../types'
 
 const init_city = {
     id: "init",
-    name: "nyc",
+    name: "init_city_localllll",
     coordinates: {
         lat: 1,
         lng: 2
