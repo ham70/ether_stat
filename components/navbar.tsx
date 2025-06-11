@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React, { useContext } from 'react'
 import { useRouter } from 'expo-router'
-import { Context, useAppContext } from '../context'
+import { useAppContext } from '../context'
 
 const Navbar = () => {
   const router = useRouter()
