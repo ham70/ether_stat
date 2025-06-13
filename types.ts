@@ -6,6 +6,8 @@ export interface User {
     saved_city_names: string[];
 }
 
+export interface WeatherData
+
 export interface City {
     id: string;
     name: string;

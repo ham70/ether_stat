@@ -1,44 +1,34 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import logo from '../assets/favicon.png'
-import { Link } from 'expo-router'
-import { Context } from '../context'
+import { Link, useLocalSearchParams } from 'expo-router'
 import { User, City} from '../types'
 import Navbar from "../components/navbar"
+import { fakeCities } from '../cities'
+import Place from '../components/place'
 
 const index = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [isLocationEnabled, setIsLocationEnabled] = useState<boolean>(false);
-  const [currentCity, setCurrentCity] = useState<City | null>(null);
-  const [savedCities, setSavedCities] = useState<City[]>([]);
+  const params = useLocalSearchParams<{city_id: string;}>()
 
-  const contextValue = {
-    user: user,
-    is_logged_in: isLoggedIn,
-    location_enabled: isLocationEnabled,
-    current_city: currentCity,
-    saved_cities: savedCities,
-
-    setUser: setUser,
-    setIsLoggedIn: setIsLoggedIn,
-    setIsLocationEnabled: setIsLocationEnabled,
-    setCurrentCity: setCurrentCity,
-    setSavedCities: setSavedCities
-  }
+  useEffect(() => {
+  }, [params])
 
   return (
-    <Context.Provider value ={contextValue}>
     <View style={styles.container}>
-      <Image source={logo}/>
-      <Text style={styles.title}>Ether Status</Text>
-      <View style={styles.card}>
-        <Text>I am Card</Text>
-      </View>
-      <Link href="./search">search page</Link>
-      <Navbar/>
+      {params.city_id ? (
+        <Place city_id={params.city_id}/>
+      ) :(
+        <View>
+        <Image source={logo}/>
+        <Text style={styles.title}>Ether Status</Text>
+        <View style={styles.card}>
+          <Text>I am Card</Text>
+        </View>
+        </View>
+      )}
+    <Navbar/>
+    <Link href="./search">search page</Link>
     </View>
-    </Context.Provider>
   )
 }
 
