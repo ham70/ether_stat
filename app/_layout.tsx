@@ -28,7 +28,11 @@ export default function Layout() {
 
     return (
       <Context.Provider value={contextValue}>
-        <Stack/>
+        <Stack
+        screenOptions={{
+          headerShown: false
+        }}
+        />
       </Context.Provider>
     )
 }
