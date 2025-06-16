@@ -4,6 +4,8 @@ export const fakeCities: City[] = [
   {
     id: "1",
     name: "Phoenix",
+    lat: 1,
+    lng: 2,
     weather_data: {
       location_id: "1",
       temperature: 105,
@@ -17,6 +19,8 @@ export const fakeCities: City[] = [
   {
     id: "2",
     name: "Seattle",
+    lat: 1,
+    lng: 2,
     weather_data: {
       location_id: "2",
       temperature: 68,
@@ -30,6 +34,8 @@ export const fakeCities: City[] = [
   {
     id: "3",
     name: "Denver",
+    lat: 1,
+    lng: 2,
     weather_data: {
       location_id: "3",
       temperature: 78,
@@ -43,6 +49,8 @@ export const fakeCities: City[] = [
   {
     id: "4",
     name: "Miami",
+    lat: 1,
+    lng: 2,
     weather_data: {
       location_id: "4",
       temperature: 92,

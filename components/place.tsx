@@ -51,6 +51,7 @@ const Place = ({city_id}: {city_id : string}) => {
         ) : (
           <View>
             <Text>{city.name}</Text>
+            <Text>Coordinates: latitude {city.lat}, longitude {city.lng}</Text>
           </View>
         )
       }
