@@ -20,7 +20,7 @@ export interface City {
     id: string;//same a location_id on backend (essentially primary key)
     name: string;
     lat: number;
-    lng: number
+    lng: number;
     //threat_score: number;
     weather_data: WeatherData;
     //crime_rate: number;
