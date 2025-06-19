@@ -1,11 +1,15 @@
 import { StyleSheet, TextInput, View, Button } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
+import { SearchBarCommands } from 'react-native-screens';
 
-const Searchbar = (
- query: string,
- onChangeQuery: (text: string) => void,
- onSubmit: () => void) => {
+interface SearchbarProps {
+  query: string,
+  onChangeQuery: (text: string) => void,
+  onSubmit: () => void
+}
+
+const Searchbar = ({query, onChangeQuery, onSubmit} : SearchbarProps) => {
   return (
     <View style={styles.container}>
       <Ionicons name="search" style={styles.icon}/>

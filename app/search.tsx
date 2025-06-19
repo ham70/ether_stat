@@ -4,6 +4,7 @@ import Place from '../components/place'
 import { useRouter } from 'expo-router'
 import { useAppContext } from '../context'
 import Searchbar from '../components/searchbar'
+import { handleSearchSubmit } from '../services/search_services'
 
 const search = () => {
   const router = useRouter()
@@ -23,7 +24,7 @@ const search = () => {
       <Searchbar 
         query={query}
         onChangeQuery={setQuery}
-        onSubmit={}
+        onSubmit={() => handleSearchSubmit(query)}
         />
       <Text>Saved Cities</Text>
       {Array.from({ length: city_qaunt}, (_, index) => index + 1).map(city_num => (

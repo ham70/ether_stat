@@ -3,7 +3,7 @@ import { City } from '../types'
 
 const context = useAppContext()
 
-const handleSearchSubmit = async (query: string) => {
+export const handleSearchSubmit = async (query: string) => {
   try {
     const res = await fetch(`localhost:3000/search?q=${query}`)
 

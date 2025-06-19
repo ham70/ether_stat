@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { City } from '../types'
 import { useAppContext } from '../context'
 
-const init_city = {
+const init_city: City = {
   id: "init",
   name: "init_city_localllll",
+  lat: 1,
+  lng: 1,
   weather_data: {
     location_id: "init_id",
     temperature: 75,
@@ -52,6 +54,8 @@ const Place = ({city_id}: {city_id : string}) => {
           <View>
             <Text>{city.name}</Text>
             <Text>Coordinates: latitude {city.lat}, longitude {city.lng}</Text>
+            <Text>weather description: {city.weather_data.conditions}</Text>
+            <Text>temp: {city.weather_data.temperature}</Text>
           </View>
         )
       }
