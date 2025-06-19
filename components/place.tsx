@@ -4,23 +4,18 @@ import { City } from '../types'
 import { useAppContext } from '../context'
 
 const init_city = {
-    id: "init",
-    name: "init_city_localllll",
-    coordinates: {
-        lat: 1,
-        lng: 2
-    },
-    threat_score: 60,
-    temperature: 45,
-    weather: 'cloudy with a chance of meatballs',
-    elevation: 9,
-    pollen_count: 10,
-    aqi: 55,
-    uvi: 8,
-    crime_rate: 10000,
-    population_size: 99999999,
-    homelessness_rate: 15
-    }
+  id: "init",
+  name: "init_city_localllll",
+  weather_data: {
+    location_id: "init_id",
+    temperature: 75,
+    conditions: "sunny",
+    humidity: 80,
+    wind_speed: 6,
+    uv_index: 4,
+    created_at: 'today'
+  }
+}
 
 const Place = ({city_id}: {city_id : string}) => {
   const context = useAppContext()
@@ -56,7 +51,7 @@ const Place = ({city_id}: {city_id : string}) => {
         ) : (
           <View>
             <Text>{city.name}</Text>
-            <Text>{city.weather}</Text>
+            <Text>Coordinates: latitude {city.lat}, longitude {city.lng}</Text>
           </View>
         )
       }

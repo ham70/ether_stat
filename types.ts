@@ -6,25 +6,26 @@ export interface User {
     saved_city_names: string[];
 }
 
-export interface WeatherData
+export interface WeatherData {
+  location_id: string;
+  temperature: number;
+  conditions: string;
+  humidity: number;
+  wind_speed: number;
+  uv_index: number;
+  created_at: string;
+}
 
 export interface City {
-    id: string;
+    id: string;//same a location_id on backend (essentially primary key)
     name: string;
-    coordinates: {
-        lat: number;
-        lng: number;
-    };
-    threat_score: number;
-    temperature: number;
-    weather: string;
-    elevation: number;
-    pollen_count: number;
-    aqi: number;
-    uvi: number;
-    crime_rate: number;
-    population_size: number;
-    homelessness_rate: number;
+    lat: number;
+    lng: number
+    //threat_score: number;
+    weather_data: WeatherData;
+    //crime_rate: number;
+    //population_size: number;
+    //homelessness_rate: number;
 }
 
 export interface AppContext {
