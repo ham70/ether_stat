@@ -28,7 +28,7 @@ const search = () => {
         />
       <Text>Saved Cities</Text>
       {Array.from({ length: city_qaunt}, (_, index) => index + 1).map(city_num => (
-        <Button title={context.saved_cities[city_num - 1].name} 
+        <Button key={context.saved_cities[city_num - 1].id} title={context.saved_cities[city_num - 1].name} 
         onPress={() => goToCityPage(context.saved_cities[city_num - 1].id)}/>
       ))}
     </View>
