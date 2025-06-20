@@ -1,12 +1,13 @@
 import { useAppContext } from '../context'
+import { AppContext } from '../types'
 import { City } from '../types'
 
-const context = useAppContext()
-
-export const handleSearchSubmit = async (query: string) => {
+export const handleSearchSubmit = async (
+  query: string,
+  context: AppContext
+) => {
   try {
-    const res = await fetch(`localhost:3000/search?q=${query}`)
-
+    const res = await fetch(`http://localhost:3000/search?q=${query}`)
     const json = await res.json();
     const new_city : City = json.city
 

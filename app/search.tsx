@@ -24,11 +24,12 @@ const search = () => {
       <Searchbar 
         query={query}
         onChangeQuery={setQuery}
-        onSubmit={() => handleSearchSubmit(query)}
+        onSubmit={() => handleSearchSubmit(query, context)}
         />
       <Text>Saved Cities</Text>
       {Array.from({ length: city_qaunt}, (_, index) => index + 1).map(city_num => (
-        <Button title='city' onPress={() => goToCityPage(context.saved_cities[city_num - 1].id)}/>
+        <Button title={context.saved_cities[city_num - 1].name} 
+        onPress={() => goToCityPage(context.saved_cities[city_num - 1].id)}/>
       ))}
     </View>
   )
