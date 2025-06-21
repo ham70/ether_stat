@@ -28,6 +28,11 @@ export interface City {
     //homelessness_rate: number;
 }
 
+export interface RefreshData {
+    id: string;
+    weather_data: WeatherData;
+}
+
 export interface AppContext {
     user: User | null;
     is_logged_in: boolean;
