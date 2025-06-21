@@ -1,22 +1,39 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Button } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import logo from '../assets/favicon.png'
 import { Link, useLocalSearchParams } from 'expo-router'
 import { User, City} from '../types'
 import Navbar from "../components/navbar"
-import { fakeCities } from '../cities'
 import Place from '../components/place'
+import { useAppContext } from '../context'
+import { handleRefreshSubmit } from '../services/update_services'
 
 const index = () => {
-  const params = useLocalSearchParams<{city_id: string;}>()
+  const context = useAppContext()// overall app context
+  
+  const params = useLocalSearchParams<{city_id: string;}>()//page context
+  const [city, setCity] = useState<City>()
+
 
   useEffect(() => {
+    const len = context.saved_cities.length
+
+    for(let i = 0; i < len; i++){
+      if(context.saved_cities[i].id == params.city_id){
+        setCity(context.saved_cities[i])
+        break
+      }
+    }
+
   }, [params])
 
   return (
     <View style={styles.container}>
       {params.city_id ? (
-        <Place city_id={params.city_id}/>
+        <View>
+          <Button title = 'refresh' onPress={() => {handleRefreshSubmit(city?.lat, city?.lng, context)}}/>
+          <Place city_id={params.city_id}/>
+        </View>
       ) :(
         <View>
         <Image source={logo}/>
