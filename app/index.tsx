@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import logo from '../assets/favicon.png'
 import { Link, useLocalSearchParams } from 'expo-router'
-import { User, City} from '../types'
+import { User, City, RefreshDataRequest} from '../types'
 import Navbar from "../components/navbar"
 import Place from '../components/place'
 import { useAppContext } from '../context'
@@ -13,7 +13,7 @@ const index = () => {
   
   const params = useLocalSearchParams<{city_id: string;}>()//page context
   const [city, setCity] = useState<City>()
-
+  const [refresh_data, setRefreshData] = useState<RefreshDataRequest>()
 
   useEffect(() => {
     const len = context.saved_cities.length
@@ -21,6 +21,11 @@ const index = () => {
     for(let i = 0; i < len; i++){
       if(context.saved_cities[i].id == params.city_id){
         setCity(context.saved_cities[i])
+        setRefreshData({
+          id: context.saved_cities[i].id,
+          lat: context.saved_cities[i].lat, 
+          lng: context.saved_cities[i].lng
+        })
         break
       }
     }
@@ -31,7 +36,7 @@ const index = () => {
     <View style={styles.container}>
       {params.city_id ? (
         <View>
-          <Button title = 'refresh' onPress={() => {handleRefreshSubmit(city?.lat, city?.lng, context)}}/>
+          <Button title = 'refresh' onPress={() => {handleRefreshSubmit(refresh_data, context)}}/>
           <Place city_id={params.city_id}/>
         </View>
       ) :(

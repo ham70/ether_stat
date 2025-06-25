@@ -28,7 +28,12 @@ export interface City {
     //homelessness_rate: number;
 }
 
-export interface RefreshData {
+export interface RefreshDataRequest {
+    id: string;
+    lat: number;
+    lng: number;
+}
+export interface RefreshDataReseponse {
     id: string;
     weather_data: WeatherData;
 }
