@@ -1,6 +1,6 @@
 import { useAppContext } from '../context'
 import { AppContext } from '../types'
-import { City, RefreshDataRequest, RefreshDataReseponse } from '../types'
+import { City, RefreshDataRequest, RefreshDataResponse } from '../types'
 
 export const handleRefreshSubmit = async (
   post_data: RefreshDataRequest | undefined,
@@ -16,7 +16,7 @@ export const handleRefreshSubmit = async (
       body: JSON.stringify(post_data)
     })
     const json = await res.json();
-    const data : RefreshDataReseponse = json
+    const data : RefreshDataResponse = json
 
     const len = context.saved_cities.length
 

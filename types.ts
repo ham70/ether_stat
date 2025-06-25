@@ -33,7 +33,7 @@ export interface RefreshDataRequest {
     lat: number;
     lng: number;
 }
-export interface RefreshDataReseponse {
+export interface RefreshDataResponse {
     id: string;
     weather_data: WeatherData;
 }
