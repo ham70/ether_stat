@@ -12,7 +12,7 @@ export const handleRefreshSubmit = async (
   try {
     const res = await fetch('http://localhost:3000/refresh',{
       method: 'POST',
-      headers: { 'Content_Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(post_data)
     })
     const json = await res.json();
