@@ -30,7 +30,7 @@ const index = () => {
       }
     }
 
-  }, [params])
+  }, [params.city_id])
 
   return (
     <View style={styles.container}>
