@@ -8,10 +8,25 @@ export interface User {
 
 export interface WeatherData {
   location_id: string;
-  temperature: number;
   conditions: string;
+  temperature: {
+    main: number;
+    feels_like: number;
+    min: number;
+    max: number;
+  };
   humidity: number;
-  wind_speed: number;
+  wind: {
+    direction: {
+        degrees: number;
+        cardinal: string;
+    }
+    speed: number;
+    gust: number;
+    chill: number;
+  }
+  thunder_storm: number;
+  visibility: number;
   uv_index: number;
   created_at: string;
 }
