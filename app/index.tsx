@@ -23,8 +23,8 @@ const index = () => {
         setCity(context.saved_cities[i])
         setRefreshData({
           id: context.saved_cities[i].id,
-          lat: context.saved_cities[i].lat, 
-          lng: context.saved_cities[i].lng
+          lat: context.saved_cities[i].location.lat, 
+          lng: context.saved_cities[i].location.lng
         })
         break
       }

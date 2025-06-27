@@ -40,9 +40,10 @@ const Place = ({city_id}: {city_id : string}) => {
         ) : (
           <View>
             <Text>{city.name}</Text>
-            <Text>Coordinates: latitude {city.lat}, longitude {city.lng}</Text>
+            <Text>Coordinates: latitude {city.location.lat}, longitude {city.location.lng}</Text>
             <Text>weather description: {city.weather_data.conditions}</Text>
-            <Text>temp: {city.weather_data.temperature.main}</Text>
+            <Text>Temp: {city.weather_data.temperature.main}</Text>
+            <Text>Employement Rate: {city.demographics.employment_rate}, Median HH Income: {city.demographics.median_hh_income}</Text>
           </View>
         )
       }

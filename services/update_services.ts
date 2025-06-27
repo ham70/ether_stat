@@ -15,8 +15,7 @@ export const handleRefreshSubmit = async (
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(post_data)
     })
-    const json = await res.json();
-    const data : RefreshDataResponse = json
+    const data: RefreshDataResponse = await res.json();
 
     const len = context.saved_cities.length
 

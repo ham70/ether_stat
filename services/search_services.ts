@@ -8,8 +8,7 @@ export const handleSearchSubmit = async (
 ) => {
   try {
     const res = await fetch(`http://localhost:3000/search?q=${query}`)
-    const json = await res.json();
-    const new_city : City = json.city
+    const new_city : City = await res.json();
 
     const new_cities : City[] = context.saved_cities
     new_cities.push(new_city)
