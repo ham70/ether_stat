@@ -6,10 +6,13 @@ import { SearchBarCommands } from 'react-native-screens';
 interface SearchbarProps {
   query: string,
   onChangeQuery: (text: string) => void,
-  onSubmit: () => void
+  onFocus: () => void,
+  onCancel: () => void,
+  onSubmit: () => void,
+  isActive: boolean
 }
 
-const Searchbar = ({query, onChangeQuery, onSubmit} : SearchbarProps) => {
+const Searchbar = ({query, onChangeQuery, onFocus, onCancel, onSubmit, isActive} : SearchbarProps) => {
   return (
     <View style={styles.container}>
       <Ionicons name="search" style={styles.icon}/>
@@ -18,11 +21,17 @@ const Searchbar = ({query, onChangeQuery, onSubmit} : SearchbarProps) => {
         placeholder={"city name"}
         value={query}
         onChangeText={onChangeQuery}
+        onFocus={onFocus}
         placeholderTextColor="#999"
         returnKeyType="search"
         clearButtonMode="while-editing"
       />
-      <Button title ='Submit' onPress={onSubmit}/>
+      {isActive && (
+        <View>
+          <Button title ='Submit' onPress={onSubmit}/>
+          <Button title='Cancel' onPress={onCancel}/>
+        </View>
+      )}
     </View>
   )
 }
