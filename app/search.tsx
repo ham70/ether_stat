@@ -4,11 +4,12 @@ import Place from '../components/place'
 import { useRouter } from 'expo-router'
 import { useAppContext } from '../context'
 import Searchbar from '../components/searchbar'
-import { handleSearchSubmit } from '../services/search_services'
+import { handleSearchSubmit, handleSearchSuggestions } from '../services/search_services'
+import { searchSuggestions } from '../types'
 
 const search = () => {
   const router = useRouter()
-  const goToCityPage = (city_id: string) => {
+  function goToCityPage(city_id: string){
     router.push(`/?city_id=${city_id}`)
   }
   //app context
@@ -16,7 +17,23 @@ const search = () => {
   const city_qaunt = context.saved_cities.length
 
   //search page context
+  const [search_active, setSearchActive] = useState(false)
   const [query, setQuery] = useState('')
+  const [results, setResults] = useState<searchSuggestions>()
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      if (query.length > 0){
+        const suggestions : searchSuggestions = await handleSearchSuggestions(query)
+        if(suggestions.locations.length != suggestions.ids.length){
+          console.error('Search results arrays locations and ids must be of equal length')
+        } else {
+          setResults(suggestions)
+        }
+      }
+    }
+    fetchResults()
+  }, [query])
     
   return (
     <View>
@@ -24,8 +41,19 @@ const search = () => {
       <Searchbar 
         query={query}
         onChangeQuery={setQuery}
+        onFocus={() => setSearchActive(true)}
+        onCancel={() => {
+          setSearchActive(false)
+          setQuery("")
+        }}
         onSubmit={() => handleSearchSubmit(query, context)}
+        isActive={search_active}
         />
+      {search_active && (
+        <View>
+          <Text>Meow results go here meow</Text>
+        </View>
+      )}
       <Text>Saved Cities</Text>
       {Array.from({ length: city_qaunt}, (_, index) => index + 1).map(city_num => (
         <Button key={context.saved_cities[city_num - 1].id} title={context.saved_cities[city_num - 1].name} 

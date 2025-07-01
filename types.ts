@@ -9,6 +9,7 @@ export interface User {
 export interface LocationData {
   id: string;
   name: string;
+  full_address: string;
   lat: number;
   lng: number;
   county_name: string;
@@ -93,4 +94,9 @@ export interface AppContext {
   setIsLocationEnabled: (enabled: boolean) => void;
   setCurrentCity: (city: City | null) => void;
   setSavedCities: (cities: City[]) => void;
+}
+
+export interface searchSuggestions {
+  locations: string[];
+  ids: string[];
 }
