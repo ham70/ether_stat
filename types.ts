@@ -96,7 +96,7 @@ export interface AppContext {
   setSavedCities: (cities: City[]) => void;
 }
 
-export interface searchSuggestions {
-  locations: string[];
-  ids: string[];
+export interface searchSuggestion {
+  full_address: string;
+  id: string;
 }
