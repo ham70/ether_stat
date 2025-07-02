@@ -1,6 +1,6 @@
 import { useAppContext } from '../context'
 import { AppContext } from '../types'
-import { City, searchSuggestions } from '../types'
+import { City, searchSuggestion } from '../types'
 
 //standard search submit
 export const handleSearchSubmit = async (
@@ -20,8 +20,8 @@ export const handleSearchSubmit = async (
 }
 
 //call for dynamic search results
-export const handleSearchSuggestions = async (query : string): Promise<searchSuggestions> => {
+export const handleSearchSuggestions = async (query : string): Promise<searchSuggestion[]> => {
   const res = await fetch(`http://localhost:3000/search/suggest?q=${query}`)
-  const suggestions : searchSuggestions = await res.json()
+  const suggestions : searchSuggestion[] = await res.json()
   return suggestions
 }

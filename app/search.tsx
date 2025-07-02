@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router'
 import { useAppContext } from '../context'
 import Searchbar from '../components/searchbar'
 import { handleSearchSubmit, handleSearchSuggestions } from '../services/search_services'
-import { searchSuggestions } from '../types'
+import { searchSuggestion } from '../types'
 
 const search = () => {
   const router = useRouter()
@@ -19,17 +19,13 @@ const search = () => {
   //search page context
   const [search_active, setSearchActive] = useState(false)
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<searchSuggestions>()
+  const [results, setResults] = useState<searchSuggestion[]>()
 
   useEffect(() => {
     const fetchResults = async () => {
       if (query.length > 0){
-        const suggestions : searchSuggestions = await handleSearchSuggestions(query)
-        if(suggestions.locations.length != suggestions.ids.length){
-          console.error('Search results arrays locations and ids must be of equal length')
-        } else {
-          setResults(suggestions)
-        }
+        const suggestions : searchSuggestion[] = await handleSearchSuggestions(query)
+        setResults(suggestions)
       }
     }
     fetchResults()
