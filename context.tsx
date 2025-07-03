@@ -8,5 +8,8 @@ export function useAppContext() {
     if(c == undefined){
         throw new Error("useAppContext must be used with a Context for overall app")
     }
+    if(!c.saved_cities_set){
+        c.saved_cities_set = new Set()
+    }
     return c
 }
