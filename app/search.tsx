@@ -26,6 +26,7 @@ const search = () => {
       if (query.length > 0){
         const suggestions : searchSuggestion[] = await handleSearchSuggestions(query)
         setResults(suggestions)
+        console.log(suggestions)
       }
     }
     fetchResults()

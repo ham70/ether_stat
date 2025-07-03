@@ -88,6 +88,7 @@ export interface AppContext {
   location_enabled: boolean;
   current_city: City | null;
   saved_cities: City[];
+  saved_cities_set: Set<string>;
 
   setUser: (user: User | null) => void;
   setIsLoggedIn: (isLoggedIn: boolean) => void;
