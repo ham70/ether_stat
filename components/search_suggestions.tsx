@@ -7,10 +7,11 @@ import { AppContext } from '../types'
 
 interface SearchSuggestionProps {
   suggestions: searchSuggestion[],
-  context: AppContext
+  context: AppContext,
+  onSubmit: () => void
 }
 
-const SearchSuggestions = ({suggestions, context} : SearchSuggestionProps) => {
+const SearchSuggestions = ({suggestions, context, onSubmit} : SearchSuggestionProps) => {
 
   return (
     <View>
