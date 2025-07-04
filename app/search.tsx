@@ -4,6 +4,7 @@ import Place from '../components/place'
 import { useRouter } from 'expo-router'
 import { useAppContext } from '../context'
 import Searchbar from '../components/searchbar'
+import SearchSuggestions from '../components/search_suggestions'
 import { handleSearchSubmit, handleSearchSuggestions } from '../services/search_services'
 import { searchSuggestion } from '../types'
 
@@ -19,14 +20,14 @@ const search = () => {
   //search page context
   const [search_active, setSearchActive] = useState(false)
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<searchSuggestion[]>()
+  const [suggestions, setSuggestions] = useState<searchSuggestion[]>()
 
   useEffect(() => {
     const fetchResults = async () => {
       if (query.length > 0){
-        const suggestions : searchSuggestion[] = await handleSearchSuggestions(query)
-        setResults(suggestions)
-        console.log(suggestions)
+        const sugg : searchSuggestion[] = await handleSearchSuggestions(query)
+        setSuggestions(sugg)
+        console.log(sugg)
       }
     }
     fetchResults()
@@ -49,6 +50,12 @@ const search = () => {
       {search_active && (
         <View>
           <Text>Meow results go here meow</Text>
+          {suggestions && (
+            <SearchSuggestions
+              suggestions={suggestions}
+              context={context}
+            />
+          )}
         </View>
       )}
       <Text>Saved Cities</Text>
