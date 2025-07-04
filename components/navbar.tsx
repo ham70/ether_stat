@@ -17,9 +17,12 @@ const Navbar = () => {
       <Text>navbar</Text>
       <Text>hello the navbar has context and can see {city_qaunt} amount of cities</Text>
       {context.location_enabled && (<Button title='curr_location'/>)}
-      {Array.from({ length: city_qaunt}, (_, index) => index + 1).map(city_num => (
-        <Button key={context.saved_cities[city_num - 1].id} title={context.saved_cities[city_num - 1].name} 
-        onPress={() => goToPage(context.saved_cities[city_num - 1].id)}/>
+      {context.saved_cities.map((c) => (
+        <Button
+          key={c.id}
+          title={c.name}
+          onPress={() => goToPage(c.id)}
+        />
       ))}
     </View>
   )
