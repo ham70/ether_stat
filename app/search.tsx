@@ -6,32 +6,40 @@ import { useAppContext } from '../context'
 import Searchbar from '../components/searchbar'
 import SearchSuggestions from '../components/search_suggestions'
 import { handleSearchSubmit, handleSearchSuggestions } from '../services/search_services'
-import { searchSuggestion } from '../types'
+import { AppContext, searchSuggestion } from '../types'
 
 const search = () => {
   const router = useRouter()
+  const context = useAppContext()
   function goToCityPage(city_id: string){
     router.push(`/?city_id=${city_id}`)
   }
-  //app context
-  const context = useAppContext()
-  const city_qaunt = context.saved_cities.length
+  const searchSubmit = async (query: string, context: AppContext) => {
+    await handleSearchSubmit(query, context)
+    const new_city_id = context.saved_cities[context.saved_cities.length - 1].id
+    goToCityPage(new_city_id)
+  }
 
   //search page context
   const [search_active, setSearchActive] = useState(false)
   const [query, setQuery] = useState('')
   const [suggestions, setSuggestions] = useState<searchSuggestion[]>()
 
+  //effect for handling search suggestions
   useEffect(() => {
     const fetchResults = async () => {
       if (query.length > 0){
         const sugg : searchSuggestion[] = await handleSearchSuggestions(query)
         setSuggestions(sugg)
-        console.log(sugg)
       }
     }
     fetchResults()
   }, [query])
+  //effect for moving to city page following search
+  //useEffect(() => {
+  //  const new_city_id = context.saved_cities[context.saved_cities.length - 1].id
+  //  goToCityPage(new_city_id)
+  //}, [context.saved_cities.length])
     
   return (
     <View>
@@ -44,7 +52,11 @@ const search = () => {
           setSearchActive(false)
           setQuery("")
         }}
-        onSubmit={() => handleSearchSubmit(query, context)}
+        onSubmit={() => {
+          searchSubmit(query, context)
+          setSearchActive(false)
+          setQuery("")
+        }}
         isActive={search_active}
         />
       {search_active && (
