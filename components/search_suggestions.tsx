@@ -8,7 +8,7 @@ import { AppContext } from '../types'
 interface SearchSuggestionProps {
   suggestions: searchSuggestion[],
   context: AppContext,
-  onSubmit: () => void
+  onSubmit: (s: string, c: AppContext) => void
 }
 
 const SearchSuggestions = ({suggestions, context, onSubmit} : SearchSuggestionProps) => {
@@ -20,7 +20,7 @@ const SearchSuggestions = ({suggestions, context, onSubmit} : SearchSuggestionPr
         <Button
           key={s.id}
           title={s.full_address}
-          onPress={() => handleSearchSubmit(s.full_address, context)}
+          onPress={() => onSubmit(s.full_address, context)}
         />
       ))}
     </View>
