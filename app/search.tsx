@@ -14,8 +14,8 @@ const search = () => {
   function goToCityPage(city_id: string){
     router.push(`/?city_id=${city_id}`)
   }
-  const searchSubmit = async (query: string, context: AppContext) => {
-    await handleSearchSubmit(query, context)
+  const searchSubmit = async (query: string, id: string | undefined, context: AppContext) => {
+    await handleSearchSubmit(query, id, context)
     const new_city_id = context.saved_cities[context.saved_cities.length - 1].id
     goToCityPage(new_city_id)
     setSearchActive(false)
@@ -49,7 +49,7 @@ const search = () => {
           setSearchActive(false)
           setQuery("")
         }}
-        onSubmit={() => {searchSubmit(query, context)}}
+        onSubmit={() => {searchSubmit(query, undefined, context)}}
         isActive={search_active}
         />
       {search_active && (
