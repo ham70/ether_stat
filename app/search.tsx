@@ -18,6 +18,8 @@ const search = () => {
     await handleSearchSubmit(query, context)
     const new_city_id = context.saved_cities[context.saved_cities.length - 1].id
     goToCityPage(new_city_id)
+    setSearchActive(false)
+    setQuery("")
   }
 
   //search page context
@@ -35,11 +37,6 @@ const search = () => {
     }
     fetchResults()
   }, [query])
-  //effect for moving to city page following search
-  //useEffect(() => {
-  //  const new_city_id = context.saved_cities[context.saved_cities.length - 1].id
-  //  goToCityPage(new_city_id)
-  //}, [context.saved_cities.length])
     
   return (
     <View>
@@ -52,11 +49,7 @@ const search = () => {
           setSearchActive(false)
           setQuery("")
         }}
-        onSubmit={() => {
-          searchSubmit(query, context)
-          setSearchActive(false)
-          setQuery("")
-        }}
+        onSubmit={() => {searchSubmit(query, context)}}
         isActive={search_active}
         />
       {search_active && (
@@ -66,6 +59,7 @@ const search = () => {
             <SearchSuggestions
               suggestions={suggestions}
               context={context}
+              onSubmit={searchSubmit}
             />
           )}
         </View>
