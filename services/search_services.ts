@@ -5,10 +5,11 @@ import { City, searchSuggestion } from '../types'
 //standard search submit
 export const handleSearchSubmit = async (
   query: string,
+  id: string | undefined,
   context: AppContext
 ) => {
   try {
-    const res = await fetch(`http://localhost:3000/search?q=${query}`)
+    const res = await fetch(`http://localhost:3000/search?q=${query}&id=${id}`)
     const new_city : City = await res.json();
 
     if(context.saved_cities_set && context.saved_cities_set.has(new_city.id)){
