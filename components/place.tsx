@@ -39,7 +39,6 @@ const Place = ({city_id}: {city_id : string}) => {
         ) : (
           <>
             <Text style={styles.header_text}>{city.name}</Text>
-            <ScrollView contentContainerStyle={styles.scrollContent}>
               <View style={styles.box}>
                 <Text style={styles.sub_header_test}>Weather</Text>
                 <Text style={styles.large_test}>{city.weather_data.temperature.main}°F</Text>
@@ -65,7 +64,6 @@ const Place = ({city_id}: {city_id : string}) => {
                 <Text style={styles.noncentered_body_text}>Median Income:  {city.demographics.median_hh_income}</Text>
                 <Text style={styles.noncentered_body_text}>Total Housing Units:  {city.demographics.total_housing}</Text>
               </View>
-            </ScrollView>
           </>
         )
       }
@@ -77,7 +75,6 @@ export default Place
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#f7f7f7',
   },
   scrollContent: {
