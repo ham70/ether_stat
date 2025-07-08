@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Button } from 'react-native'
+import { StyleSheet, Text, View, Image, Button, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import logo from '../assets/favicon.png'
 import { Link, useLocalSearchParams } from 'expo-router'
@@ -34,6 +34,7 @@ const index = () => {
 
   return (
     <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.scrollContent}>
       {params.city_id ? (
         <View>
           <Button title = 'refresh' onPress={() => {handleRefreshSubmit(refresh_data, context)}}/>
@@ -48,6 +49,7 @@ const index = () => {
         </View>
         </View>
       )}
+    </ScrollView>
     <Navbar/>
     <Link href="./search">search page</Link>
     </View>
@@ -59,9 +61,12 @@ export default index
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
     },
+    scrollContent: {
+    padding: 16,
+    paddingBottom: 50, // makes space for Navbar
+    alignItems: 'center',
+  },
     title: {
         fontWeight: 'bold',
         fontSize: 18
