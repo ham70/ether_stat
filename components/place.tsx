@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { City } from '../types'
 import { useAppContext } from '../context'
 import { fakeCities } from '../cities'
+import get_user_location from '../services/user_location'
 
 const init_city: City = fakeCities[0]
 
@@ -15,19 +16,26 @@ const Place = ({city_id}: {city_id : string}) => {
 
   async function get_city(city_id : string){
     set_loading(true)
-    try{
-      for(let i = 0; i < city_qaunt; i++){
-        if(context.saved_cities[i].id == city_id){
-          set_city(context.saved_cities[i])
-          break
-        }
+    if(city_id === 'u'){
+      try{
+        const user_city: City = await get_user_location()
+        set_city(user_city)
+      } catch(error) {
+        console.error(error)
       }
-        
-      set_loading(false)
-    }catch(error){
-      console.error(error)
-      set_loading(false)
+    } else {
+      try{
+        for(let i = 0; i < city_qaunt; i++){
+          if(context.saved_cities[i].id == city_id){
+            set_city(context.saved_cities[i])
+            break
+          }
+        }
+      } catch(error) {
+        console.error(error)
+      }
     }
+    set_loading(false)
   }
   useEffect(()=>{get_city(city_id)}, [])
 
