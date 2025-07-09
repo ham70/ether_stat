@@ -22,6 +22,7 @@ export const handleRefreshSubmit = async (
     for(let i = 0; i < len; i++){
       if(context.saved_cities[i].id === data.id){
         context.saved_cities[i].weather_data = data.weather_data
+        context.saved_cities[i].aqi_data = data.aqi_data
         break
       }
     }
