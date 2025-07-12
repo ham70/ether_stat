@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Place from '../components/place'
 import { useRouter } from 'expo-router'
@@ -39,7 +39,7 @@ const search = () => {
   }, [query])
     
   return (
-    <View>
+    <SafeAreaView style={styles.safeArea}>
       <Searchbar 
         query={query}
         onChangeQuery={setQuery}
@@ -62,7 +62,7 @@ const search = () => {
           )}
         </View>
       )}
-      <Text>Saved Cities</Text>
+      <Text>Saved Cities:</Text>
       {context.saved_cities && context.saved_cities.map((c) => (
           <Button
           key={c.id}
@@ -70,10 +70,15 @@ const search = () => {
           onPress={() => goToCityPage(c.id)}
           />
       ))}
-    </View>
+    </SafeAreaView >
   )
 }
 
 export default search
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff', // or your preferred background color
+  }
+})

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Button, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, Button, ScrollView, SafeAreaView  } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import logo from '../assets/favicon.png'
 import { Link, useLocalSearchParams } from 'expo-router'
@@ -37,7 +37,7 @@ const index = () => {
   }, [params.city_id])
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView  style={styles.container}>
     <ScrollView contentContainerStyle={styles.scrollContent}>
       {params.city_id ? (
         <View>
@@ -52,7 +52,7 @@ const index = () => {
       )}
     </ScrollView>
     <Navbar/>
-    </View>
+    </SafeAreaView >
   )
 }
 
