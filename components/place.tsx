@@ -7,7 +7,7 @@ import get_user_location from '../services/user_location'
 
 const init_city: City = fakeCities[0]
 
-const Place = ({city_id}: {city_id : string}) => {
+const Place = ({city_id, refresh_key}: {city_id : string, refresh_key: number}) => {
   const context = useAppContext()
 
   const [city, set_city] = useState<City>(init_city)
@@ -39,7 +39,7 @@ const Place = ({city_id}: {city_id : string}) => {
     }
     set_loading(false)
   }
-  useEffect(()=>{get_city(city_id)}, [])
+  useEffect(()=>{get_city(city_id)}, [refresh_key])
 
   return (
     <View style={styles.container}>
