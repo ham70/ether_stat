@@ -9,7 +9,6 @@ const init_city: City = fakeCities[0]
 
 const Place = ({city_id}: {city_id : string}) => {
   const context = useAppContext()
-  const city_qaunt = context.saved_cities.length
 
   const [city, set_city] = useState<City>(init_city)
   const [loading, set_loading] = useState<boolean>(true)
@@ -18,13 +17,16 @@ const Place = ({city_id}: {city_id : string}) => {
     set_loading(true)
     if(city_id === 'u'){
       try{
-        const user_city: City = await get_user_location()
-        set_city(user_city)
+        const user_city: City | undefined = await get_user_location()
+        if(user_city !== undefined){
+          set_city(user_city)
+        }
       } catch(error) {
         console.error(error)
       }
     } else {
       try{
+        const city_qaunt = context.saved_cities.length
         for(let i = 0; i < city_qaunt; i++){
           if(context.saved_cities[i].id == city_id){
             set_city(context.saved_cities[i])

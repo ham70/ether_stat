@@ -10,7 +10,7 @@ export default function Layout() {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [isLocationEnabled, setIsLocationEnabled] = useState<boolean>(false);
     const [currentCity, setCurrentCity] = useState<City | null>(null);
-    const [savedCities, setSavedCities] = useState<City[]>(fakeCities);
+    const [savedCities, setSavedCities] = useState<City[] | null>([]);
 
     const contextValue = {
       user: user,

@@ -16,20 +16,24 @@ const index = () => {
   const [refresh_data, setRefreshData] = useState<RefreshDataRequest>()
 
   useEffect(() => {
-    const len = context.saved_cities.length
-
-    for(let i = 0; i < len; i++){
-      if(context.saved_cities[i].id == params.city_id){
-        setCity(context.saved_cities[i])
-        setRefreshData({
-          id: context.saved_cities[i].id,
-          lat: context.saved_cities[i].location.lat, 
-          lng: context.saved_cities[i].location.lng
-        })
-        break
+    if(params.city_id === "u"){
+      context.setCurrentCity(null)
+    }
+    else if (context.saved_cities !== null){
+      const len = context.saved_cities.length
+      for(let i = 0; i < len; i++){
+        if(context.saved_cities[i].id == params.city_id){
+          context.setCurrentCity(context.saved_cities[i])
+          setRefreshData({
+            id: context.saved_cities[i].id,
+            lat: context.saved_cities[i].location.lat, 
+            lng: context.saved_cities[i].location.lng
+          })
+          break
+        }
       }
     }
-
+    
   }, [params.city_id])
 
   return (
@@ -44,14 +48,10 @@ const index = () => {
         <View>
         <Image source={logo}/>
         <Text style={styles.title}>Ether Status</Text>
-        <View style={styles.card}>
-          <Text>I am Card</Text>
-        </View>
         </View>
       )}
     </ScrollView>
     <Navbar/>
-    <Link href="./search">search page</Link>
     </View>
   )
 }

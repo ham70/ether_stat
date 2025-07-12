@@ -40,7 +40,6 @@ const search = () => {
     
   return (
     <View>
-      <Text>search page</Text>
       <Searchbar 
         query={query}
         onChangeQuery={setQuery}
@@ -54,7 +53,6 @@ const search = () => {
         />
       {search_active && (
         <View>
-          <Text>Meow results go here meow</Text>
           {suggestions && (
             <SearchSuggestions
               suggestions={suggestions}
@@ -65,12 +63,12 @@ const search = () => {
         </View>
       )}
       <Text>Saved Cities</Text>
-      {context.saved_cities.map((c) => (
-        <Button
+      {context.saved_cities && context.saved_cities.map((c) => (
+          <Button
           key={c.id}
           title={c.name}
           onPress={() => goToCityPage(c.id)}
-        />
+          />
       ))}
     </View>
   )
