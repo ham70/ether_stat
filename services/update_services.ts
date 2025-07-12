@@ -10,7 +10,7 @@ export const handleRefreshSubmit = async (
     console.error('postdata must be defined, with id lat and lng, to request location refresh')
   }
   try {
-    const res = await fetch('http://localhost:3000/refresh',{
+    const res = await fetch('https://ether-stat-backend.vercel.app/refresh',{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(post_data)

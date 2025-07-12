@@ -5,7 +5,7 @@ async function get_user_location(): Promise<City | undefined> {
   const post_data = { user_coords }
 
 
-  const res = await fetch(`http://localhost:3000/search/uloc`,{
+  const res = await fetch(`https://ether-stat-backend.vercel.app/search/uloc`,{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(post_data)
