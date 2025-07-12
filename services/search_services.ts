@@ -9,7 +9,7 @@ export const handleSearchSubmit = async (
   context: AppContext
 ) => {
   try {
-    const res = await fetch(`http://localhost:3000/search?q=${query}&id=${id}`)
+    const res = await fetch(`https://ether-stat-backend.vercel.app/search?q=${query}&id=${id}`)
     const new_city : City = await res.json();
 
     if(context.saved_cities_set && context.saved_cities_set.has(new_city.id)){
@@ -27,7 +27,7 @@ export const handleSearchSubmit = async (
 
 //call for dynamic search results
 export const handleSearchSuggestions = async (query : string): Promise<searchSuggestion[]> => {
-  const res = await fetch(`http://localhost:3000/search/suggest?q=${query}`)
+  const res = await fetch(`https://ether-stat-backend.vercel.app/search/suggest?q=${query}`)
   const suggestions : searchSuggestion[] = await res.json()
   return suggestions
 }
