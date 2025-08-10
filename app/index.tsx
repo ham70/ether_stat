@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Image, Button, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons';
-import logo from '../assets/favicon.png'
 import { Link, useLocalSearchParams } from 'expo-router'
 import { User, City, RefreshDataRequest} from '../types'
 import Navbar from "../components/navbar"
@@ -54,7 +53,6 @@ const index = () => {
         </View>
       ) :(
         <View>
-        <Image source={logo}/>
         <Text style={styles.title}>Ether Status</Text>
         </View>
       )}
